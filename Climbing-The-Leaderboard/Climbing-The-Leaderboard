@@ -14,24 +14,23 @@ import sys
 #  1. INTEGER_ARRAY ranked
 #  2. INTEGER_ARRAY player
 #
+   
 def calculatePosition(play, rank):
-    a=len(rank)-1
     position=0
-    for i in range(-a, 1):
-        if play>rank[abs(i)]:
-            position=abs(i)+1
-        elif play==rank[abs(i)]:
-            position=abs(i)+1
+    for i in range(len(rank)):
+        if play>rank[i]:
+            position=len(rank)-i
+        elif play==rank[i]:
+            position=len(rank)-i
             break
-        elif play<rank[abs(i)]:
-            position=abs(i)+2
+        elif play<rank[i]:
+            position=len(rank)-i+1
             break
     return position
             
 def climbingLeaderboard(ranked, player):
     # Write your code here
     noduplicates=sorted(list(set(ranked)))
-    noduplicates.reverse()
     positions=[]
     for play in player:
         a=calculatePosition(play, noduplicates)
